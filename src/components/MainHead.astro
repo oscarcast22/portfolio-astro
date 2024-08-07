@@ -1,0 +1,25 @@
+---
+import '@/styles/normalice.css';
+import '@/styles/global.css';
+import '@fontsource-variable/roboto-mono';
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+	title?: string | undefined;
+	description?: string | undefined;
+}
+
+const {
+	title = 'Oscar Castillo',
+	description = 'Portafolio Personal de Oscar Castillo',
+} = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="description" property="og:description" content={description} />
+<meta name="viewport" content="width=device-width" />
+<meta name="generator" content={Astro.generator} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>{title}</title>
+<ViewTransitions />
+

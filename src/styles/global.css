@@ -10,7 +10,7 @@
 	--white: #FFFFFF;
 	--black: #000000;
 
-	--background: #000000;
+	--background: #F2F2F2;
 
 	/* Tamaño de fuentes*/
 	--text-xs: 0.75rem;
@@ -140,5 +140,14 @@ input {
 
 html {
 	scroll-behavior: smooth;
+}
+
+.section-content {
+	max-width: 1080px;
+	margin: auto;
+}
+
+.main-content {
+	padding: 20px;
 }
 

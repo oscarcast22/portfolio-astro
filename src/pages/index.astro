@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '@/Layouts/BaseLayout.astro'
-import ContentLayout from '@/Layouts/ContentLayout.astro'
 import Hero from '@/sections/Hero.astro'
 ---
 
 <BaseLayout>
-	<ContentLayout>
-		<Hero />
-	</ContentLayout>
+	<Hero />
+	<main class="main-content">
+		<section class="section-content">
+			<h3>Contenido</h3>
+		</section>
+	</main>
 </BaseLayout>

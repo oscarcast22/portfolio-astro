@@ -10,6 +10,8 @@
 	--white: #FFFFFF;
 	--black: #000000;
 
+	--background: #000000;
+
 	/* Tamaño de fuentes*/
 	--text-xs: 0.75rem;
 	--text-sm: 0.875rem;
@@ -35,7 +37,7 @@
 
 body {
 	font-family: 'Roboto Mono Variable', monospace, sans-serif;
-  	background: var(--gray-950);
+  	background: var(--background);
 	margin: 0;
 	padding: 0;
 	text-align: left;

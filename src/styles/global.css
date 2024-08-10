@@ -6,9 +6,9 @@
 	--gray-500: #7F7F7F;
 	--gray-600: #999999;
 	--gray-700: #CACACA;
-	--gray-900: #F2F2F2;
+	--gray-900: #fafafa;
 	--white: #FFFFFF;
-	--black: #000000;
+	--black: #FFFFFF;
 
 	--background: #000000;
 
@@ -84,6 +84,13 @@ h5 {
 }
 
 p {
+	color: var(--black);
+}
+
+ul,
+ol,
+li {
+	list-style: none;
 	color: var(--black);
 }
 

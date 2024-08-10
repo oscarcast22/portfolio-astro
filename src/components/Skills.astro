@@ -1,0 +1,75 @@
+<div class="skills">
+    <h3>Algunas de mis habilidades</h3>
+    <ul>
+        <li>React</li>
+        <li>HTML5</li>
+        <li>CSS3</li>
+    </ul>
+</div>
+
+<style>
+        .skills {
+            border-radius: 5px;
+            padding: 15px;
+            background-color: rgb(0, 0, 0);
+            position: relative;
+            overflow: hidden;
+        }
+        .skills::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -20px;
+            bottom: -2px;
+            background: linear-gradient(90deg, #ff00ff, #00ff00, #0000ff, #ff0000, #ff00ff);
+            background-size: 400% 400%;
+            z-index: 0;
+            filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .skills:hover::before {
+            opacity: 1;
+        }
+        .skills::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgb(0, 0, 0);
+            z-index: -1;
+        }
+</style>
+
+<script is:inline>
+    const skills = document.querySelector('.skills');
+    let isHovering = false;
+
+    skills.addEventListener('mouseenter', () => {
+        isHovering = true;
+    });
+
+    skills.addEventListener('mouseleave', () => {
+        isHovering = false;
+    });
+
+    skills.addEventListener('mousemove', (e) => {
+        if (!isHovering) return;
+        console.log("hovering div")
+        const rect = skills.getBoundingClientRect();
+        const x = e.clientX - rect.left; // x position within the element
+        const y = e.clientY - rect.top;  // y position within the element
+
+        // Calculate the position in percentage
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+
+        // Update the gradient position
+        skills.style.setProperty('--x', `${xPercent}%`);
+        skills.style.setProperty('--y', `${yPercent}%`);
+
+        // Update the background position
+        const gradientPos = `${(xPercent / 100) * 400}% ${(yPercent / 100) * 400}%`;
+        skills.style.setProperty('--gradient-pos', gradientPos);
+    });
+</script>

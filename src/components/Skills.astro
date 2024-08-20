@@ -29,7 +29,7 @@
 
     .border img {
         position: absolute;
-        top: -300px;
+        top: -225px;
         left: -225px;
     }
 
@@ -78,13 +78,13 @@
         intervalId = setInterval(() => {
             switch (currentState) {
                 case 0: // Izquierda
-                    borderImage.style.transform = `translate(${skillsContainer.offsetWidth}px, 0px)`;
+                    borderImage.style.transform = `translate(${skillsContainer.offsetWidth}px, -40px)`;
                     break;
                 case 1: // Abajo
-                    borderImage.style.transform = `translate(${skillsContainer.offsetWidth}px, ${skillsContainer.offsetHeight + 280}px)`;
+                    borderImage.style.transform = `translate(${skillsContainer.offsetWidth}px, ${skillsContainer.offsetHeight + 40}px)`;
                     break;
                 case 2: // Derecha
-                    borderImage.style.transform = `translate(0px, ${skillsContainer.offsetHeight}px)`;
+                    borderImage.style.transform = `translate(0px, ${skillsContainer.offsetHeight + 40}px)`;
                     break;
                 case 3: // Arriba
                     borderImage.style.transform = `translate(-75px, 0px)`;

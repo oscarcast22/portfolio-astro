@@ -1,8 +1,24 @@
-<div class="skills">
+<div class="skills" id="skills">
     <div class="content">
         <h3>Habilidades</h3>
+        <ul>
+            <li>
+                React
+            </li>
+            <li>
+                HTML5
+            </li>
+            <li>
+                CSS5
+            </li>
+            <li>
+                Javascript
+            </li>
+        </ul>
     </div>
-    <div class="border"></div>
+    <div class="border">
+        <img src="/images/border-light2.png" alt="">
+    </div>
 </div>
 
 <style>
@@ -11,10 +27,10 @@
         padding: 15px;
     }
 
-    .content {
-        position: relative;
-        z-index: 2;
-        color: white;
+    .border img {
+        position: absolute;
+        top: -300px;
+        left: -225px;
     }
 
     .border {
@@ -24,14 +40,6 @@
         top: 0;
         left: 0;
         z-index: 1;
-        background: 
-            conic-gradient(from calc(var(--angle, 0deg) - 30deg), 
-                transparent 0deg, 
-                #00ffff 60deg, 
-                transparent 120deg
-            );
-        background-size: 200% 200%;
-        background-position: 50% 50%;
         border-radius: 20px;
         mask: 
             linear-gradient(#fff 0 0) content-box, 
@@ -42,18 +50,72 @@
             linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         padding: 2px;
-        animation: rotate 3s linear infinite;
     }
 
-    @keyframes rotate {
-        to {
-            --angle: 360deg;
-        }
-    }
-
-    @property --angle {
-        syntax: '<angle>';
-        initial-value: 0deg;
-        inherits: false;
+    .content {
+        position: relative;
+        z-index: 2;
+        color: white;
     }
 </style>
+
+<script is:inline>
+    const skillsContainer = document.querySelector('.skills');
+    const borderImage = skillsContainer.querySelector('.border img');
+
+    // Obtener el tamaño de la imagen
+    const imageWidth = 450;
+    const imageHeight = 450;
+
+    let intervalId;
+    let currentState = 0; // 0: izquierda, 1: abajo, 2: derecha, 3: arriba
+    const transitionDuration = 2500; // Duración de la transición en milisegundos
+    const intervalDelay = 1500; // Retrasar la siguiente transición en milisegundos
+
+    // Función para mover la imagen alrededor del contenedor
+    function moveImageInOrbit() {
+        clearInterval(intervalId);
+        intervalId = setInterval(() => {
+            switch (currentState) {
+                case 0: // Izquierda
+                    borderImage.style.transform = `translate(${skillsContainer.offsetWidth}px, 0px)`;
+                    break;
+                case 1: // Abajo
+                    borderImage.style.transform = `translate(${skillsContainer.offsetWidth}px, ${skillsContainer.offsetHeight + 280}px)`;
+                    break;
+                case 2: // Derecha
+                    borderImage.style.transform = `translate(0px, ${skillsContainer.offsetHeight}px)`;
+                    break;
+                case 3: // Arriba
+                    borderImage.style.transform = `translate(-75px, 0px)`;
+                    break;
+            }
+        
+            borderImage.style.transition = `transform ${transitionDuration}ms ease`;
+        
+            currentState = (currentState + 1) % 4;
+        }, intervalDelay);
+    }
+
+    // Mover la imagen alrededor inicialmente
+    moveImageInOrbit();
+
+    skillsContainer.addEventListener('mouseenter', () => {
+        clearInterval(intervalId);
+        updateBorderImage(event);
+        skillsContainer.addEventListener('mousemove', updateBorderImage);
+    });
+
+    skillsContainer.addEventListener('mouseleave', () => {
+        skillsContainer.removeEventListener('mousemove', updateBorderImage);
+        moveImageInOrbit();
+    });
+
+    function updateBorderImage(e) {
+        const mouseX = e.clientX - skillsContainer.offsetLeft + 250;
+        const mouseY = e.clientY - skillsContainer.offsetTop + 250;
+
+        borderImage.style.transform = `translate(${mouseX - imageWidth / 2}px, ${mouseY - imageHeight / 2}px)`;
+        borderImage.style.transition = `transform 0.3s ease`;
+    }
+  </script>

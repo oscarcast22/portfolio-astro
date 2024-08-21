@@ -1,10 +1,18 @@
+---
+interface Props {
+    lightBorder?: string | undefined;
+    darkBorder?: string | undefined;
+}
+
+const { lightBorder = "border-light", darkBorder = "border-dark" } = Astro.props
+---
 <div class="border-animated" id="border-animated">
     <div class="content">
         <slot />
     </div>
     <div class="border">
-        <img src="/images/border-light2.png" alt="Light Border" class="light-mode">
-        <img src="/images/border-dark.png" alt="Dark Border" class="dark-mode">
+        <img src=`/assets/utils/${lightBorder}.png` alt="Light Border" class="light-mode">
+        <img src=`/assets/utils/${darkBorder}.png` alt="Dark Border" class="dark-mode">
     </div>
 </div>
 
@@ -156,5 +164,5 @@
             new BorderAnimated(borderContainer);
         });
     });
-    
+
   </script>

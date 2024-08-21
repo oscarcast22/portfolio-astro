@@ -5,6 +5,7 @@
 	--gray-100: #FFFFFF;
 	--gray-200: #e9ebed;
 	--gray-300: #fafafa;
+	--gray-500: #36414e;
 	--gray-600: #272f38;
 	--white: #FFFFFF;
 	--black: #060b10;
@@ -60,6 +61,7 @@
 	--gray-100: #12181f;
 	--gray-200: #0f0f0f;
 	--gray-300: #fafafa;
+	--gray-500: #c5c7c9;
 	--gray-600: #e9ebed;
 	--white: #060b10;
 	--black: #FFFFFF;
@@ -186,6 +188,10 @@ input {
 
 .bold {
 	font-weight: var(--bold);
+}
+
+.typed-cursor {
+	color: var(--gray-500) !important;
 }
 
 html {

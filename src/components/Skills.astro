@@ -4,7 +4,7 @@ import BorderAnimated from "./BorderAnimated.astro"
 
 <BorderAnimated>
     <div class="skills">
-        <h3>Habilidades</h3>
+        <span id="typed"></span>
         <div class="carousel">
             <ul>
                 <li>
@@ -30,8 +30,10 @@ import BorderAnimated from "./BorderAnimated.astro"
         border-radius: 20px;
         text-align: center;
 
-        h3 {
+        span {
             color: var(--light-color);
+            font-size: var(--text-2xl);
+            font-weight: var(--semi-bold);
         }
     }
 
@@ -47,3 +49,16 @@ import BorderAnimated from "./BorderAnimated.astro"
         }
     }
 </style>
+
+<script>
+    import Typed from "typed.js";
+
+    document.addEventListener("astro:page-load", () => {
+      const typed = new Typed("#typed", {
+        strings: ["Habilidades"],
+        typeSpeed: 115,
+        loop: false,
+        showCursor: true,
+      });
+    });
+</script>

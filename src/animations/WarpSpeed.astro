@@ -12,7 +12,7 @@
 </style>
 
 <script is:inline>
-    // Warpspeed effect, credits to adolfintel (https://github.com/adolfintel/warpspeed)
+    // <--- Warpspeed effect, credits to adolfintel (https://github.com/adolfintel/warpspeed) --->
     window.requestAnimationFrame=window.requestAnimationFrame||(function(callback,element){setTimeout(callback,1000/60);});
 
     function timeStamp(){
@@ -154,49 +154,40 @@
 
     WarpSpeed.destroy=WarpSpeed.prototype.destroy;
 
-    // Función para ajustar el modo
-    function toggleMode(mode) {
-        const canvas = document.getElementById('warpspeedCanvas');
-        const isDarkMode = mode === 'dark';
+    //<--- Warpspeed effect --->
     
-        if (isDarkMode) {
-            canvas.style.backgroundColor = '#000000'; // Fondo oscuro
-            WarpSpeed.STAR_COLOR = '#F2F2F2'; // Estrellas blancas
-        } else {
-            canvas.style.backgroundColor = '#F2F2F2'; // Fondo claro
-            WarpSpeed.STAR_COLOR = '#000000'; // Estrellas negras
-        }
-
-        // Redibuja el canvas para aplicar el cambio
-        if (WarpSpeed.RUNNING_INSTANCES['warpspeedCanvas']) {
-            WarpSpeed.RUNNING_INSTANCES['warpspeedCanvas'].destroy();
-            new WarpSpeed("warpspeedCanvas", {
-                speed: 0.8,                 // Velocidad de las estrellas
-                speedAdjFactor: 0.05,       // Factor de ajuste de velocidad
-                density: 0.9,               // Densidad de las estrellas
-                shape: "circle",            // Forma de las estrellas
-                warpEffect: true,           // Activar efecto de "warp"
-                warpEffectLength: 5,        // Longitud del efecto de "warp"
-                depthFade: true,            // Desvanecimiento según la profundidad
-                starSize: 3,                // Tamaño de las estrellas
-                backgroundColor: canvas.style.backgroundColor, // Color de fondo actual
-                starColor: WarpSpeed.STAR_COLOR // Color de estrellas actual
-            });
-        }
+    function getPreferredColorScheme() {
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     }
 
-    // Inicializar WarpSpeed con las configuraciones deseadas
-    new WarpSpeed("warpspeedCanvas", {
-        speed: 1.5,                 // Velocidad de las estrellas
-        speedAdjFactor: 0.05,       // Factor de ajuste de velocidad
-        density: 0.4,               // Densidad de las estrellas
-        shape: "circle",            // Forma de las estrellas
-        warpEffect: true,           // Activar efecto de "warp"
-        warpEffectLength: 5,        // Longitud del efecto de "warp"
-        depthFade: true,            // Desvanecimiento según la profundidad
-        starSize: 3,                // Tamaño de las estrellas
-        backgroundColor: '#0f0f0f', // Color de fondo oscuro
-        starColor: '#FFFFFF'        // Color de las estrellas blancas
-    });
-    
+    function initWarpSpeed() {
+      const preferredColorScheme = getPreferredColorScheme();
+      const isDark = preferredColorScheme === 'dark'
+
+      console.log(isDark)
+        
+      let backgroundColor, starColor;
+      if (isDark) {
+        backgroundColor = '#060b10';
+        starColor = '#fafafa';
+      } else {
+        backgroundColor = '#fafafa';
+        starColor = '#1fd9d9';
+      }
+
+      new WarpSpeed("warpspeedCanvas", {
+        speed: 1.5,
+        speedAdjFactor: 0.05,
+        density: 0.4,
+        shape: "circle",
+        warpEffect: true,
+        warpEffectLength: 5,
+        depthFade: true,
+        starSize: 3,
+        backgroundColor: backgroundColor,
+        starColor: starColor
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", initWarpSpeed);
 </script>

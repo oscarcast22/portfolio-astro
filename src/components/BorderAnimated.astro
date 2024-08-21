@@ -19,7 +19,6 @@ const { lightBorder = "border-light", darkBorder = "border-dark" } = Astro.props
 <style>
     .border-animated {
         position: relative;
-        padding: 15px;
     }
 
     .border img {
@@ -50,7 +49,6 @@ const { lightBorder = "border-light", darkBorder = "border-dark" } = Astro.props
     .content {
         position: relative;
         z-index: 2;
-        color: white;
     }
 
     .light-mode {
@@ -82,20 +80,20 @@ const { lightBorder = "border-light", darkBorder = "border-dark" } = Astro.props
         currentState: number = 0;
         transitionDuration: number = 2500;
         intervalDelay: number;
-        
+
         constructor(borderContainer: HTMLElement) {
             this.borderContainer = borderContainer;
             this.lightImage = this.borderContainer.querySelector('.light-mode') as HTMLImageElement;
             this.darkImage = this.borderContainer.querySelector('.dark-mode') as HTMLImageElement;
             this.intervalDelay = this.getRandomDelay();
-        
+
             this.init();
         }
-    
+
         getRandomDelay(): number {
             return Math.floor(Math.random() * (1800 - 1400 + 1)) + 1400;
         }
-    
+
         moveImageInOrbit(): void {
             this.clearOrbit();
             this.intervalId = setInterval(() => {
@@ -118,53 +116,53 @@ const { lightBorder = "border-light", darkBorder = "border-dark" } = Astro.props
                         translateY = `0px`;
                         break;
                 }
-            
+
                 this.lightImage.style.transform = `translate(${translateX}, ${translateY})`;
                 this.darkImage.style.transform = `translate(${translateX}, ${translateY})`;
-            
+
                 this.lightImage.style.transition = `transform ${this.transitionDuration}ms ease`;
                 this.darkImage.style.transition = `transform ${this.transitionDuration}ms ease`;
-            
+
                 this.currentState = (this.currentState + 1) % 4;
             }, this.intervalDelay);
         }
-    
+
         clearOrbit(): void {
             if (this.intervalId) {
                 clearInterval(this.intervalId);
             }
         }
-    
+
         updateBorderImage(e: MouseEvent): void {
             const mouseX: number = e.clientX - this.borderContainer.offsetLeft + 225;
             const mouseY: number = e.clientY - this.borderContainer.offsetTop + 225;
-        
+
             this.lightImage.style.transform = `translate(${mouseX - this.imageWidth / 2}px, ${mouseY - this.imageHeight / 2}px)`;
             this.darkImage.style.transform = `translate(${mouseX - this.imageWidth / 2}px, ${mouseY - this.imageHeight / 2}px)`;
-        
+
             this.lightImage.style.transition = `transform 0.3s ease`;
             this.darkImage.style.transition = `transform 0.3s ease`;
         }
-    
+
         init(): void {
             this.moveImageInOrbit();
-        
+
             this.borderContainer.addEventListener('mouseenter', () => {
                 this.clearOrbit();
                 this.updateBorderImage(event as MouseEvent);
                 this.borderContainer.addEventListener('mousemove', this.updateBorderImage.bind(this));
             });
-        
+
             this.borderContainer.addEventListener('mouseleave', () => {
                 this.borderContainer.removeEventListener('mousemove', this.updateBorderImage.bind(this));
                 this.moveImageInOrbit();
             });
         }
     }
-    
+
     document.addEventListener('astro:page-load', () => {
         const borderContainers = document.querySelectorAll('.border-animated') as NodeListOf<HTMLElement>;
-        
+
         borderContainers.forEach((borderContainer) => {
             new BorderAnimated(borderContainer);
         });

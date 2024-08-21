@@ -2,17 +2,15 @@
 	/* Colores */
 	--primary: #625bf8;
 	--accent-primary : rgb(73, 68, 165);
-	--gray-100: #161616;
-	--gray-300: #0f0f0f;
-	--gray-400: #333333;
-	--gray-500: #7F7F7F;
-	--gray-600: #999999;
-	--gray-700: #CACACA;
-	--gray-900: #fafafa;
+	--gray-100: #FFFFFF;
+	--gray-200: #e9ebed;
+	--gray-300: #fafafa;
+	--gray-600: #272f38;
 	--white: #FFFFFF;
-	--black: #FFFFFF;
+	--black: #060b10;
 
-	--background: #0f0f0f;
+	--background: #060b10;
+	--button-hover: #defffe;
 
 	--grad-1: #4285f4;
 	--grad-2: #9b72cb;
@@ -25,6 +23,8 @@
 
 
 	--gradient: linear-gradient(285deg, var(--background) 35%, var(--grad-1) 40%, var(--grad-2) 49%, var(--grad-3) 58%, var(--grad-4) 63%, var(--grad-5) 74%, var(--grad-6) 85%, var(--grad-7) 95%, var(--grad-8) 100%);
+
+	--shadow-m: -1px 1px 5px var(--gray-200);
 
 	/* Tamaño de fuentes*/
 	--text-xs: 0.75rem;
@@ -47,6 +47,30 @@
 	--semi-bold: 600;
 	--bold: 700;
 	--extra-bold: 800;
+}
+
+:root.dark {
+	/* Colores */
+
+	--primary: #625bf8;
+	--accent-primary : rgb(73, 68, 165);
+	--gray-100: #12181f;
+	--gray-200: #0f0f0f;
+	--gray-300: #fafafa;
+	--gray-600: #e9ebed;
+	--white: #060b10;
+	--black: #FFFFFF;
+
+	--background: #060b10;
+
+	--grad-1: #4285f4;
+	--grad-2: #9b72cb;
+	--grad-3: #d96570;
+	--grad-4: #d0677e;
+	--grad-5: #9b72cb;
+	--grad-6: #4285f4;
+	--grad-7: #9b72cb;
+	--grad-8: #d96570;
 
 }
 
@@ -170,5 +194,10 @@ html {
 
 .main-content {
 	padding: 20px;
+}
+
+.card {
+	border: 1px solid var(--gray-200);
+	box-shadow: var(--shadow-m);
 }
 

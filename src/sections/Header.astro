@@ -29,7 +29,7 @@ import Moon from "@/icons/moon.astro"
     .gradient {
         position: relative;
         color: transparent;
-        background: linear-gradient(290deg, var(--background) 35%, var(--gray-400) 42%);
+        background: linear-gradient(290deg, var(--background) 35%, var(--gray-600) 42%);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -126,6 +126,8 @@ import Moon from "@/icons/moon.astro"
             c.add('dark');
             localStorage.setItem('theme', 'dark');
         }
+
+        initWarpSpeed()
     };
 
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);

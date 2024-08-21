@@ -1,0 +1,132 @@
+---
+import Sun from "@/icons/sun.astro"
+import Moon from "@/icons/moon.astro"
+---
+<header>
+    <div class="gradient">
+        <h1>Oscar</h1>
+    </div>
+    <button class="theme-toggle" id="theme-toggle">
+        <div class="icon-container">
+            <Sun />
+            <Moon />
+        </div>
+    </button>
+</header>
+
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .theme-toggle {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .gradient {
+        position: relative;
+        color: transparent;
+        background: linear-gradient(290deg, var(--background) 35%, var(--gray-400) 42%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400% 100%;
+        animation: text-reveal-animation 3s ease forwards;
+        width: fit-content;
+
+        h1 {
+            font-size: 1.5rem;
+        }
+    }
+
+    @keyframes text-reveal-animation {
+        0% {
+            background-position: 100% 0%;
+        }
+        100% {
+            background-position: 0% 0%;
+        }
+    }
+</style>
+
+<style is:global>
+    @keyframes fadeIn {
+        from { 
+            opacity: 0;
+            scale: 0;
+        }
+        to { 
+            opacity: 1;
+            scale: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from { 
+            opacity: 1;
+            scale: 1;
+        }
+        to { 
+            opacity: 0;
+            scale: 0;
+        }
+    }
+
+    .icon-container {
+        position: relative;
+        width: 25px;
+        height: 25px;
+    }
+
+    .icon-container .icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 0.3s ease, scale 0.3s ease;
+    }
+
+    .icon-container .icon.sun {
+        opacity: 1;
+        animation: fadeIn 0.3s forwards;
+    }
+
+    .icon-container .icon.moon {
+        opacity: 0;
+        animation: fadeOut 0.3s forwards;
+    }
+
+    .dark .icon.sun {
+        opacity: 0;
+        animation: fadeOut 0.3s forwards;
+    }
+
+    .dark .icon.moon {
+        opacity: 1;
+        animation: fadeIn 0.3s forwards;
+    }
+</style>
+
+<script is:inline>
+    const toggleTheme = () => {
+        const d = document.documentElement;
+        const c = d.classList;
+        const currentTheme = localStorage.getItem('theme');
+        
+        if (currentTheme === 'dark') {
+            d.style.colorScheme = 'light';
+            c.remove('dark');
+            c.add('light');
+            localStorage.setItem('theme', 'light');
+        } else {
+            d.style.colorScheme = 'dark';
+            c.remove('light');
+            c.add('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    };
+
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+</script>

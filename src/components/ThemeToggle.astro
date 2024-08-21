@@ -2,23 +2,14 @@
 import Sun from "@/icons/sun.astro"
 import Moon from "@/icons/moon.astro"
 ---
-<header>
-    <div class="gradient">
-        <h1>Oscar</h1>
+<button class="theme-toggle" id="theme-toggle">
+    <div class="icon-container">
+        <Sun />
+        <Moon />
     </div>
-    <button class="theme-toggle" id="theme-toggle">
-        <div class="icon-container">
-            <Sun />
-            <Moon />
-        </div>
-    </button>
-</header>
+</button>
 
-<style>
-    header {
-        display: flex;
-        justify-content: space-between;
-    }
+<style is:global>
 
     .theme-toggle {
         background-color: transparent;
@@ -26,33 +17,6 @@ import Moon from "@/icons/moon.astro"
         cursor: pointer;
     }
 
-    .gradient {
-        position: relative;
-        color: transparent;
-        background: linear-gradient(290deg, var(--background) 35%, var(--gray-600) 42%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-size: 400% 100%;
-        animation: text-reveal-animation 3s ease forwards;
-        width: fit-content;
-
-        h1 {
-            font-size: 1.5rem;
-        }
-    }
-
-    @keyframes text-reveal-animation {
-        0% {
-            background-position: 100% 0%;
-        }
-        100% {
-            background-position: 0% 0%;
-        }
-    }
-</style>
-
-<style is:global>
     @keyframes fadeIn {
         from { 
             opacity: 0;
@@ -107,6 +71,7 @@ import Moon from "@/icons/moon.astro"
         opacity: 1;
         animation: fadeIn 0.3s forwards;
     }
+
 </style>
 
 <script is:inline>

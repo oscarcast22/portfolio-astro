@@ -3,22 +3,47 @@ import BorderAnimated from "./BorderAnimated.astro"
 ---
 
 <BorderAnimated>
-    <h3>Habilidades</h3>
-    <ul>
-        <li>
-            React
-        </li>
-        <li>
-            HTML5
-        </li>
-        <li>
-            CSS5
-        </li>
-        <li>
-            Javascript
-        </li>
-    </ul>
+    <div class="skills">
+        <h3>Habilidades</h3>
+        <div class="carousel">
+            <ul>
+                <li>
+                    React
+                </li>
+                <li>
+                    HTML5
+                </li>
+                <li>
+                    CSS3
+                </li>
+                <li>
+                    Javascript
+                </li>
+            </ul>
+        </div>
+    </div>
 </BorderAnimated>
-<BorderAnimated>
-    <h1>Hola</h1>
-</BorderAnimated>
+
+<style>
+    .skills {
+        padding: 15px;
+        border-radius: 20px;
+        text-align: center;
+
+        h3 {
+            color: var(--light-color);
+        }
+    }
+
+    .carousel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        ul {
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+    }
+</style>

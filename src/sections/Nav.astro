@@ -1,0 +1,55 @@
+---
+import ThemeToggle from "@/components/ThemeToggle.astro"
+---
+<header>
+    <div class="nav">
+        <div class="gradient">
+            <h1>Oscar</h1>
+        </div>
+        <ThemeToggle />
+    </div>
+</header>
+
+<style>
+    header {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100vw;
+    }
+
+    .nav {
+        display: flex;
+        width: 100%;
+        max-width: 1120px;
+        margin: auto;
+        padding: 15px 20px;
+        justify-content: space-between;
+    }
+
+    .gradient {
+        position: relative;
+        color: transparent;
+        background: linear-gradient(290deg, var(--background) 35%, var(--gray-600) 42%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400% 100%;
+        animation: text-reveal-animation 3s ease forwards;
+        width: fit-content;
+
+        h1 {
+            font-size: 1.5rem;
+        }
+    }
+
+    @keyframes text-reveal-animation {
+        0% {
+            background-position: 100% 0%;
+        }
+        100% {
+            background-position: 0% 0%;
+        }
+    }
+</style>
+

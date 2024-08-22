@@ -1,19 +1,30 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import { SkillIcons } from './SkillIcons';
+import { frontendIcons, backendIcons } from './SkillsIcons';
 
 interface Props {
-	icon: keyof typeof SkillIcons;
+	icon: keyof typeof frontendIcons | keyof typeof backendIcons;
 	color?: string;
 	size?: string;
+	type?: 'frontend' | 'backend'; 
 }
 
-const { color, icon, size } = Astro.props;
-const { viewBox, path } = SkillIcons[icon];
+interface IconData {
+  viewBox: string;
+  path: string;
+}
+
+type IconSet = Record<string, IconData>;
+
+const { color, icon, size, type = 'frontend' } = Astro.props;
+
+const icons: IconSet = type === 'frontend' ? frontendIcons : backendIcons;
+const { viewBox, path } = icons[icon];
 
 const attrs: HTMLAttributes<'svg'> = {};
 if (size) attrs.style = { '--size': size };
 if (color) attrs.fill = color;
+
 ---
 
 <svg

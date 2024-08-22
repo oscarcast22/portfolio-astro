@@ -1,23 +1,12 @@
 ---
 import BorderAnimated from "./BorderAnimated.astro"
-import Icon from "./Icon.astro"
-import { SkillIcons } from './SkillIcons';
-
-const iconKeys = Object.keys(SkillIcons) as (keyof typeof SkillIcons)[];
+import SkillsCarousel from "./SkillsCarousel.astro"
 ---
 
 <BorderAnimated>
     <div class="skills">
         <span id="typed"></span>
-        <div class="carousel">
-            <ul>
-                {iconKeys.map((key) => (
-                    <li class="icon">
-                        <Icon icon={key} size="45px"/>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <SkillsCarousel />
     </div>
 </BorderAnimated>
 
@@ -32,31 +21,6 @@ const iconKeys = Object.keys(SkillIcons) as (keyof typeof SkillIcons)[];
             font-size: var(--text-2xl);
             font-weight: var(--semi-bold);
         }
-    }
-
-    .carousel {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 90%;
-        max-width: 500px;
-        margin: auto;
-
-        ul {
-            padding: 0;
-            display: flex;
-            gap: 18px;
-        }
-    }
-
-    .icon {
-        transition: scale .3s ease;
-
-    }
-
-
-    .icon:hover {
-        scale: 1.15;
     }
 </style>
 

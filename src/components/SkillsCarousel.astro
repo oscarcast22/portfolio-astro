@@ -1,0 +1,60 @@
+---
+import Icon from "./Icon.astro"
+import { frontendIcons, backendIcons } from './SkillsIcons';
+
+const frontendKeys = Object.keys(frontendIcons) as (keyof typeof frontendIcons)[];
+const backendKeys = Object.keys(backendIcons) as (keyof typeof backendIcons)[];
+---
+<div class="carousel">
+    <h5>Frontend</h5>
+    <ul id="frontend">
+        {frontendKeys.map((key) => (
+            <li class="icon">
+                <Icon icon={key} size="45px"/>
+            </li>
+        ))}
+    </ul>
+</div>
+<div class="carousel">
+    <h5>Backend</h5>
+    <ul id="backend">
+        {backendKeys.map((key) => (
+            <li class="icon">
+                <Icon icon={key} type="backend" size="45px"/>
+            </li>
+        ))}
+    </ul>
+</div>
+
+<style>
+    .carousel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        max-width: 500px;
+        margin: auto;
+
+        h5 {
+            margin: 16px auto 0;
+        }
+
+        ul {
+            padding: 0;
+            margin: 10px auto;
+            display: flex;
+            gap: 18px;
+        }
+    }
+
+    .icon {
+        transition: scale .3s ease;
+
+    }
+
+
+    .icon:hover {
+        scale: 1.15;
+    }
+</style>

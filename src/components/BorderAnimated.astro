@@ -80,6 +80,7 @@ const { lightBorder = "border-light", darkBorder = "border-dark" } = Astro.props
         currentState: number = 0;
         transitionDuration: number = 2500;
         intervalDelay: number;
+        mouseEventsActive: boolean = false;
 
         constructor(borderContainer: HTMLElement) {
             this.borderContainer = borderContainer;
@@ -88,6 +89,7 @@ const { lightBorder = "border-light", darkBorder = "border-dark" } = Astro.props
             this.intervalDelay = this.getRandomDelay();
 
             this.init();
+            this.addResizeListener();
         }
 
         getRandomDelay(): number {
@@ -144,18 +146,50 @@ const { lightBorder = "border-light", darkBorder = "border-dark" } = Astro.props
             this.darkImage.style.transition = `transform 0.3s ease`;
         }
 
+        addMouseEvents(): void {
+            if (!this.mouseEventsActive) {
+                this.borderContainer.addEventListener('mouseenter', this.handleMouseEnter.bind(this));
+                this.borderContainer.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+                this.mouseEventsActive = true;
+            }
+        }
+
+        removeMouseEvents(): void {
+            if (this.mouseEventsActive) {
+                this.borderContainer.removeEventListener('mouseenter', this.handleMouseEnter.bind(this));
+                this.borderContainer.removeEventListener('mouseleave', this.handleMouseLeave.bind(this));
+                this.borderContainer.removeEventListener('mousemove', this.updateBorderImage.bind(this));
+                this.clearOrbit();
+                this.mouseEventsActive = false;
+            }
+        }
+
+        handleMouseEnter(event: MouseEvent): void {
+            this.clearOrbit();
+            this.updateBorderImage(event);
+            this.borderContainer.addEventListener('mousemove', this.updateBorderImage.bind(this));
+        }
+
+        handleMouseLeave(): void {
+            this.borderContainer.removeEventListener('mousemove', this.updateBorderImage.bind(this));
+            this.moveImageInOrbit();
+        }
+
         init(): void {
             this.moveImageInOrbit();
+            if (window.innerWidth >= 550) {
+                this.addMouseEvents();
+            }
+        }
 
-            this.borderContainer.addEventListener('mouseenter', () => {
-                this.clearOrbit();
-                this.updateBorderImage(event as MouseEvent);
-                this.borderContainer.addEventListener('mousemove', this.updateBorderImage.bind(this));
-            });
-
-            this.borderContainer.addEventListener('mouseleave', () => {
-                this.borderContainer.removeEventListener('mousemove', this.updateBorderImage.bind(this));
-                this.moveImageInOrbit();
+        addResizeListener(): void {
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 550 && !this.mouseEventsActive) {
+                    this.moveImageInOrbit();
+                    this.addMouseEvents();
+                } else if (window.innerWidth < 550 && this.mouseEventsActive) {
+                    this.removeMouseEvents();
+                }
             });
         }
     }

@@ -133,13 +133,20 @@ const backendKeys = Object.keys(backendIcons) as (keyof typeof backendIcons)[];
 </style>
 
 <script>
-    function setupCarousel(ul) {
-        const items = ul.innerHTML;
-        ul.innerHTML = items + items;
+    function setupCarousel(ul: HTMLUListElement | null): void {
+        if (ul) {
+            const items: string = ul.innerHTML;
+            ul.innerHTML = items + items;
+        }
     }
 
-    document.addEventListener('astro:page-load', () => {
-        setupCarousel(document.getElementById('frontend'));
-        setupCarousel(document.getElementById('backend'));
-    });
+    function initCarousels(): void {
+        const frontendCarousel: HTMLUListElement | null = document.getElementById('frontend') as HTMLUListElement | null;
+        const backendCarousel: HTMLUListElement | null = document.getElementById('backend') as HTMLUListElement | null;
+
+        setupCarousel(frontendCarousel);
+        setupCarousel(backendCarousel);
+    }
+
+    document.addEventListener('astro:page-load', initCarousels);
 </script>

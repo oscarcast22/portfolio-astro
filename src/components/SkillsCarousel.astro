@@ -5,27 +5,35 @@ import { frontendIcons, backendIcons } from './SkillsIcons';
 const frontendKeys = Object.keys(frontendIcons) as (keyof typeof frontendIcons)[];
 const backendKeys = Object.keys(backendIcons) as (keyof typeof backendIcons)[];
 ---
+
 <div class="carousel">
     <h5>Frontend</h5>
-    <ul id="frontend">
-        {frontendKeys.map((key) => (
-            <li class="icon">
-                <Icon icon={key} size="45px"/>
-                <small>{key}</small>
-            </li>
-        ))}
-    </ul>
+    <div class="carousel-container">
+        <div class="gradient-overlay"></div>
+        <ul id="frontend" class="scroll-left">
+            {frontendKeys.map((key) => (
+                <li class="icon">
+                    <Icon icon={key} size="45px"/>
+                    <small>{key}</small>
+                </li>
+            ))}
+        </ul>
+    </div>
 </div>
+
 <div class="carousel">
     <h5>Backend</h5>
-    <ul id="backend">
-        {backendKeys.map((key) => (
-            <li class="icon">
-                <Icon icon={key} type="backend" size="45px"/>
-                <small>{key}</small>
-            </li>
-        ))}
-    </ul>
+    <div class="carousel-container">
+        <div class="gradient-overlay"></div>
+        <ul id="backend" class="scroll-right">
+            {backendKeys.map((key) => (
+                <li class="icon">
+                    <Icon icon={key} type="backend" size="45px"/>
+                    <small>{key}</small>
+                </li>
+            ))}
+        </ul>
+    </div>
 </div>
 
 <style>
@@ -34,23 +42,49 @@ const backendKeys = Object.keys(backendIcons) as (keyof typeof backendIcons)[];
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 90%;
+        width: 95%;
         max-width: 500px;
         margin: 15px auto;
 
         h5 {
             margin: 16px auto 0;
         }
+    }
 
-        ul {
-            padding: 0;
-            margin: 15px auto;
-            display: flex;
-            gap: 22px;
-        }
+    .carousel-container {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        padding-bottom: 15px;
+    }
+
+    .gradient-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 1;
+        background: linear-gradient(
+            to right,
+            var(--background) 0%,
+            transparent 10%,
+            transparent 90%,
+            var(--background) 100%
+        );
+    }
+
+    ul {
+        display: flex;
+        gap: 22px;
+        padding: 0;
+        margin: 15px 0;
+        position: relative;
     }
 
     .icon {
+        flex: 0 0 45px;
         transition: scale .3s ease;
         position: relative;
 
@@ -70,8 +104,42 @@ const backendKeys = Object.keys(backendIcons) as (keyof typeof backendIcons)[];
         }
     }
 
-
     .icon:hover {
         scale: 1.15;
     }
+
+    @keyframes scroll-left {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-7 * (45px + 22px))); }
+    }
+
+    @keyframes scroll-right {
+        0% { transform: translateX(calc(-7 * (45px + 22px))); }
+        100% { transform: translateX(0); }
+    }
+
+    .scroll-left {
+        animation: scroll-left 20s linear infinite;
+    }
+
+    .scroll-right {
+        animation: scroll-right 20s linear infinite;
+    }
+
+    .carousel-container:hover .scroll-left,
+    .carousel-container:hover .scroll-right {
+        animation-play-state: paused;
+    }
 </style>
+
+<script>
+    function setupCarousel(ul) {
+        const items = ul.innerHTML;
+        ul.innerHTML = items + items;
+    }
+
+    document.addEventListener('astro:page-load', () => {
+        setupCarousel(document.getElementById('frontend'));
+        setupCarousel(document.getElementById('backend'));
+    });
+</script>

@@ -2,15 +2,15 @@
 	/* Colores */
 	--primary: #625bf8;
 	--accent-primary : rgb(73, 68, 165);
-	--gray-100: #FFFFFF;
-	--gray-200: #e9ebed;
+	--gray-100: #dadada;
+	--gray-200: #cfd2d6;
 	--gray-300: #fafafa;
 	--gray-500: #36414e;
 	--gray-600: #272f38;
 	--white: #FFFFFF;
 	--black: #060b10;
 
-	--background: #060b10;
+	--background: #e9ebed;
 
 	--button-hover: #defffe;
 

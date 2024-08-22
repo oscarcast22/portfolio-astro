@@ -14,7 +14,7 @@ const backendKeys = Object.keys(backendIcons) as (keyof typeof backendIcons)[];
             {frontendKeys.map((key) => (
                 <li class="icon">
                     <Icon icon={key} size="45px"/>
-                    <small>{key}</small>
+                    <small class="semi-bold">{key}</small>
                 </li>
             ))}
         </ul>
@@ -29,7 +29,7 @@ const backendKeys = Object.keys(backendIcons) as (keyof typeof backendIcons)[];
             {backendKeys.map((key) => (
                 <li class="icon">
                     <Icon icon={key} type="backend" size="45px"/>
-                    <small>{key}</small>
+                    <small class="semi-bold">{key}</small>
                 </li>
             ))}
         </ul>

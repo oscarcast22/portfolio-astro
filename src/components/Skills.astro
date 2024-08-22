@@ -1,5 +1,9 @@
 ---
 import BorderAnimated from "./BorderAnimated.astro"
+import Icon from "./Icon.astro"
+import { SkillIcons } from './SkillIcons';
+
+const iconKeys = Object.keys(SkillIcons) as (keyof typeof SkillIcons)[];
 ---
 
 <BorderAnimated>
@@ -7,18 +11,11 @@ import BorderAnimated from "./BorderAnimated.astro"
         <span id="typed"></span>
         <div class="carousel">
             <ul>
-                <li>
-                    React
-                </li>
-                <li>
-                    HTML5
-                </li>
-                <li>
-                    CSS3
-                </li>
-                <li>
-                    Javascript
-                </li>
+                {iconKeys.map((key) => (
+                    <li class="icon">
+                        <Icon icon={key} size="45px"/>
+                    </li>
+                ))}
             </ul>
         </div>
     </div>
@@ -41,24 +38,55 @@ import BorderAnimated from "./BorderAnimated.astro"
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 90%;
+        max-width: 500px;
+        margin: auto;
 
         ul {
             padding: 0;
             display: flex;
-            gap: 15px;
+            gap: 18px;
         }
+    }
+
+    .icon {
+        transition: scale .3s ease;
+
+    }
+
+
+    .icon:hover {
+        scale: 1.15;
     }
 </style>
 
 <script>
     import Typed from "typed.js";
-
+  
     document.addEventListener("astro:page-load", () => {
-      const typed = new Typed("#typed", {
-        strings: ["Habilidades"],
-        typeSpeed: 115,
-        loop: false,
-        showCursor: true,
-      });
+      const target = document.querySelector("#typed") as HTMLElement;
+  
+      const options = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.45,
+      };
+  
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const typed = new Typed("#typed", {
+              strings: ["Habilidades"],
+              typeSpeed: 150,
+              loop: false,
+              showCursor: true,
+            });
+  
+            observer.unobserve(target);
+          }
+        });
+      }, options);
+  
+      observer.observe(target);
     });
-</script>
+  </script>

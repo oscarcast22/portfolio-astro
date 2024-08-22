@@ -1,0 +1,36 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { SkillIcons } from './SkillIcons';
+
+interface Props {
+	icon: keyof typeof SkillIcons;
+	color?: string;
+	gradient?: boolean;
+	size?: string;
+}
+
+const { color, icon, size } = Astro.props;
+const { viewBox, path } = SkillIcons[icon];
+
+const attrs: HTMLAttributes<'svg'> = {};
+if (size) attrs.style = { '--size': size };
+if (color) attrs.fill = color;
+---
+
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox={viewBox}
+	aria-hidden="true"
+	{...attrs}
+>
+	<g set:html={path} />
+</svg>
+
+<style>
+	svg {
+		vertical-align: middle;
+		width: var(--size);
+		height: var(--size);
+	}
+
+</style>

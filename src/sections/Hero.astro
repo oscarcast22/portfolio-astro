@@ -1,9 +1,12 @@
 <section class="hero">
     <div class="hero-content">
-        <div class="gradient">
-            <h1>Hola, mi nombre es</h1>
-            <h1>Oscar</h1>
-            <h3>Soy desarrollador web Full Stack</h3>
+        <div>
+            <h1 class="gradient1">Hola, mi nombre es</h1>
+            <h1 class="gradient2">Oscar</h1>
+            <div class="full-stack">
+                <h3 class="gradient1">Soy desarrollador web</h3>
+                <h3 class="gradient2" style="animation-delay: 1.3s">Full Stack</h3>
+            </div>
         </div>
     </div>
 </section>
@@ -20,15 +23,32 @@
         margin: auto;
     }
 
-    .gradient {
-        position: relative;
+    .gradient1 {
         color: transparent;
-        background: var(--gradient);
+        background: var(--gradient2);
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-position: 100% 0%;
+        -webkit-text-fill-color: transparent;
+        background-size: 320% 100%;
+        animation: text-reveal-animation 3.8s ease forwards;
+    }
+
+    .gradient2 {
+        color: transparent;
+        background: var(--gradient3);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        background-position: 100% 0%;
         background-size: 320% 100%;
-        animation: text-reveal-animation 3.2s ease forwards;
+        animation: text-reveal-animation 4.5s ease forwards;
+        animation-delay: .8s;
+    }
+
+    .full-stack {
+        display: flex;
+        gap: 1.5rem;
     }
 
     @keyframes text-reveal-animation {
@@ -37,6 +57,13 @@
         }
         100% {
             background-position: 25% 0%;
+        }
+    }
+
+    @media (max-width: 670px) {
+        .full-stack {
+            flex-direction: column;
+            gap: 0;
         }
     }
 </style>

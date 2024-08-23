@@ -19,6 +19,7 @@ import ThemeToggle from "@/components/ThemeToggle.astro"
         z-index: 99;
         backdrop-filter: blur(20px);
         background-color: rgba(var(--background-rgb), 0.5);
+        transition: top 0.5s ease-in-out; 
     }
 
     .nav {
@@ -55,4 +56,22 @@ import ThemeToggle from "@/components/ThemeToggle.astro"
         }
     }
 </style>
+
+<script>
+    let lastScrollTop = 0;
+    const header = document.querySelector('header') as HTMLElement;
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            header.style.top = '-100px';
+        } else {
+            header.style.top = '0';
+        }
+
+        lastScrollTop = scrollTop;
+    });
+</script>
+
 

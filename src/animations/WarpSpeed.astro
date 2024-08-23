@@ -161,31 +161,37 @@
     }
 
     function initWarpSpeed() {
-      const preferredColorScheme = getPreferredColorScheme();
-      const isDark = preferredColorScheme === 'dark'
+        const preferredColorScheme = getPreferredColorScheme();
+        const isDark = preferredColorScheme === 'dark'
 
-      let backgroundColor, starColor;
-      if (isDark) {
-        backgroundColor = '#060b10';
-        starColor = '#e9ebed';
-      } else {
-        backgroundColor = '#e9ebed';
-        starColor = '#1fd9d9';
-      }
+        let backgroundColor, starColor;
 
-      new WarpSpeed("warpspeedCanvas", {
-        speed: 1.5,
-        speedAdjFactor: 0.05,
-        density: 0.4,
-        shape: "circle",
-        warpEffect: true,
-        warpEffectLength: 5,
-        depthFade: true,
-        starSize: 3,
-        backgroundColor: backgroundColor,
-        starColor: starColor
-      });
+        if (isDark) {
+            backgroundColor = '#060b10';
+            starColor = '#e9ebed';
+        } else {
+            backgroundColor = '#e9ebed';
+            starColor = '#060b10';
+        }
+        new WarpSpeed("warpspeedCanvas", {
+            speed: 1.5,
+            speedAdjFactor: 0.05,
+            density: 0.4,
+            shape: "circle",
+            warpEffect: true,
+            warpEffectLength: 5,
+            depthFade: true,
+            starSize: 3,
+            backgroundColor: backgroundColor,
+            starColor: starColor
+        });
     }
 
-    document.addEventListener("DOMContentLoaded", initWarpSpeed);
+    document.addEventListener('astro:page-load', () => {
+        setTimeout(initWarpSpeed, 100); // Retrasar un poco la ejecución
+    });
+
+    document.addEventListener('astro:before-swap', () => {
+        setTimeout(initWarpSpeed, 100); // Retrasar un poco la ejecución
+    });
 </script>

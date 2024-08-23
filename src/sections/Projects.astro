@@ -1,12 +1,21 @@
 ---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import BorderAnimated from "@/animations/BorderAnimated.astro"
+import ProjectCard from '@/components/ProjectCard.astro';
+
+const projects = await getCollection('projects')
 ---
 <section class="projects">
     <BorderAnimated darkBorder="border-purple" lightBorder="border-purple">
         <div class="container">
             <span id="typed-projects"></span>
             <div class="projects-grid">
-
+                {projects.map((project: CollectionEntry<'projects'>) => {
+                    <li>
+                        <ProjectCard project={project}/>
+                    </li>
+                })}
             </div>
         </div>
     </BorderAnimated>

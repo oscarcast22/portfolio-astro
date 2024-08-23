@@ -92,8 +92,20 @@ import Moon from "@/icons/moon.astro"
             localStorage.setItem('theme', 'dark');
         }
 
-        initWarpSpeed()
+        initWarpSpeed();
     };
 
-    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+    const setupThemeToggle = () => {
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.removeEventListener('click', toggleTheme);
+            themeToggleBtn.addEventListener('click', toggleTheme);
+        }
+    };
+
+    document.addEventListener('astro:page-load', () => {
+        setupThemeToggle();
+    });
+
+    setupThemeToggle();
 </script>

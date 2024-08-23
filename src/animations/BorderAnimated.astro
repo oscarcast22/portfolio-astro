@@ -136,8 +136,9 @@ const { lightBorder = "border-light", darkBorder = "border-dark" } = Astro.props
         }
 
         updateBorderImage(e: MouseEvent): void {
-            const mouseX: number = e.clientX - this.borderContainer.offsetLeft + 225;
-            const mouseY: number = e.clientY - this.borderContainer.offsetTop + 225;
+            const rect = this.borderContainer.getBoundingClientRect();
+            const mouseX: number = e.clientX - rect.left + 225;;
+            const mouseY: number = e.clientY - rect.top + 225;;
 
             this.lightImage.style.transform = `translate(${mouseX - this.imageWidth / 2}px, ${mouseY - this.imageHeight / 2}px)`;
             this.darkImage.style.transform = `translate(${mouseX - this.imageWidth / 2}px, ${mouseY - this.imageHeight / 2}px)`;

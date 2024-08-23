@@ -1,7 +1,7 @@
 ---
 title: Local GPT
 date: 2024-10-08
-img: path-to-image
+img: /assets/projects/localgpt/portrait-localgpt.webp
 img_alt: alt
 description: |
     Velit tempor quis aute dolor nostrud do dolor esse. Dolor minim consectetur deserunt incididunt laborum Lorem ad reprehenderit nulla ad est. Culpa proident aliquip deserunt minim ut aliqua.

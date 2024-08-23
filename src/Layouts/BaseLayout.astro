@@ -22,34 +22,40 @@ const { title, description } = Astro.props;
 	</body>
 
 	<script is:inline>
-		!function() {
-    		try {
-        		let d = document.documentElement;
-        		let c = d.classList;
-				
-        		c.remove('light', 'dark');
-				
-        		let e = localStorage.getItem('theme');
-				
-        		if ('system' === e || (!e && true)) {
-        		    let t = '(prefers-color-scheme: dark)';
-        		    let m = window.matchMedia(t);
-				
-        		    if (m.media !== t || m.matches) {
-        		        d.style.colorScheme = 'dark';
-        		        c.add('dark');
-        		    } else {
-        		        d.style.colorScheme = 'light';
-        		        c.add('light');
-        		    }
-        		} else if (e) {
-        		    c.add(e || '');
-        		}
+		function applyTheme() {
+		    try {
+		        let d = document.documentElement;
+		        let c = d.classList;
 			
-        		if (e === 'light' || e === 'dark') {
-        		    d.style.colorScheme = e;
-        		}
-    		} catch (e) {}
-		}();
+		        c.remove('light', 'dark');
+			
+		        let e = localStorage.getItem('theme');
+			
+		        if ('system' === e || (!e && true)) {
+		            let t = '(prefers-color-scheme: dark)';
+		            let m = window.matchMedia(t);
+				
+		            if (m.media !== t || m.matches) {
+		                d.style.colorScheme = 'dark';
+		                c.add('dark');
+		            } else {
+		                d.style.colorScheme = 'light';
+		                c.add('light');
+		            }
+		        } else if (e) {
+		            c.add(e || '');
+		        }
+			
+		        if (e === 'light' || e === 'dark') {
+		            d.style.colorScheme = e;
+		        }
+		    } catch (e) {
+		        console.error(e);
+		    }
+		}
+
+		document.addEventListener('astro:page-load', applyTheme);
+
+		document.addEventListener('astro:before-swap', applyTheme);
 	</script>
 </html>

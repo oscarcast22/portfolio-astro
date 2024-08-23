@@ -58,20 +58,28 @@ import ThemeToggle from "@/components/ThemeToggle.astro"
 </style>
 
 <script>
-    let lastScrollTop = 0;
-    const header = document.querySelector('header') as HTMLElement;
+    function initScrollEffect() {
+        let lastScrollTop = 0;
+        const header = document.querySelector('header') as HTMLElement;
 
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-        if (scrollTop > lastScrollTop) {
-            header.style.top = '-100px';
-        } else {
-            header.style.top = '0';
-        }
+            if (scrollTop > lastScrollTop) {
+                header.style.top = '-100px';
+            } else {
+                header.style.top = '0';
+            }
 
-        lastScrollTop = scrollTop;
-    });
+            lastScrollTop = scrollTop;
+        });
+    }
+
+    window.addEventListener('load', initScrollEffect);
+
+    document.addEventListener('astro:page-load', initScrollEffect);
+
+    document.addEventListener('astro:before-swap', initScrollEffect);
 </script>
 
 

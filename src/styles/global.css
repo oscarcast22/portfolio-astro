@@ -11,6 +11,7 @@
 	--black: #060b10;
 
 	--background: #e9ebed;
+	--background-rgb: 233, 235, 237;
 
 	--button-hover: #defffe;
 
@@ -72,7 +73,8 @@
 	--white: #060b10;
 	--black: #FFFFFF;
 
-	--background: rgb(6, 11, 16);
+	--background: #060b10;
+	--background-rgb: 6, 11, 16;
 
 	--light-color: #00f2ff;
 

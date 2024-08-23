@@ -16,6 +16,9 @@ import ThemeToggle from "@/components/ThemeToggle.astro"
         top: 0;
         right: 0;
         width: 100vw;
+        z-index: 99;
+        backdrop-filter: blur(20px);
+        background-color: rgba(var(--background-rgb), 0.5);
     }
 
     .nav {
@@ -35,7 +38,7 @@ import ThemeToggle from "@/components/ThemeToggle.astro"
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-size: 400% 100%;
-        animation: text-reveal-animation 3s ease forwards;
+        animation: text-reveal-animation 1s ease forwards;
         width: fit-content;
 
         h1 {

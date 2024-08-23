@@ -1,20 +1,29 @@
 ---
 import BorderAnimated from "@/animations/BorderAnimated.astro"
-import SkillsCarousel from "./SkillsCarousel.astro"
 ---
+<section class="projects">
+    <BorderAnimated darkBorder="border-purple" lightBorder="border-purple">
+        <div class="container">
+            <span id="typed-projects"></span>
+            <div class="projects-grid">
 
-<BorderAnimated>
-    <div class="skills container">
-        <span id="typed"></span>
-        <SkillsCarousel />
-    </div>
-</BorderAnimated>
+            </div>
+        </div>
+    </BorderAnimated>
+</section>
+
+<style>
+    .projects {
+        margin: 50px 0;
+    }
+
+</style>
 
 <script>
     import Typed from "typed.js";
   
     document.addEventListener("astro:page-load", () => {
-      const target = document.querySelector("#typed") as HTMLElement;
+      const target = document.querySelector("#typed-projects") as HTMLElement;
   
       const options = {
         root: null,
@@ -25,9 +34,9 @@ import SkillsCarousel from "./SkillsCarousel.astro"
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            const typed = new Typed("#typed", {
-              strings: ["Habilidades"],
-              typeSpeed: 150,
+            const typed = new Typed("#typed-projects", {
+              strings: ["Algunos de mis proyectos"],
+              typeSpeed: 120,
               loop: false,
               showCursor: true,
             });

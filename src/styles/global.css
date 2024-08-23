@@ -15,7 +15,7 @@
 
 	--button-hover: #defffe;
 
-	--light-color: #1fd9d9;
+	--light-color: #20b6b6;
 
 	--astro-stop1: #000014;
 	--astro-stop2: #150426;
@@ -224,4 +224,18 @@ html {
 	border: 1px solid var(--gray-200);
 	box-shadow: var(--shadow-m);
 }
+
+.container {
+	padding: 15px;
+	border-radius: 20px;
+	text-align: center;
+
+	span {
+		color: var(--light-color);
+		font-size: var(--text-2xl);
+		font-weight: var(--semi-bold);
+	}
+}
+
+
 

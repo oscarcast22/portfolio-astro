@@ -1,7 +1,7 @@
 :root {
 	/* Colores */
 	--primary: #625bf8;
-	--accent-primary : rgb(73, 68, 165);
+	--accent-primary : #4944a5;
 	--gray-100: #dadada;
 	--gray-200: #cfd2d6;
 	--gray-300: #fafafa;
@@ -11,7 +11,8 @@
 	--black: #060b10;
 
 	--background: #e9ebed;
-	--background-rgb: 233, 235, 237;
+	--overlay-card: 218, 218, 218;
+	--shadow-rgb: 20, 20, 20;
 
 	--button-hover: #defffe;
 
@@ -26,7 +27,7 @@
 	--grad-4: #d0677e;
 	--grad-5: #9b72cb;
 	--grad-6: #4285f4;
-	--grad-7: hwb(268 45% 20%);
+	--grad-7: #9c73cc;
 	--grad-8: #d96570;
 
 	--grad-9: #060b10;
@@ -65,7 +66,7 @@
 	/* Colores */
 
 	--primary: #625bf8;
-	--accent-primary : rgb(73, 68, 165);
+	--accent-primary : #4944a5;
 	--gray-100: #12181f;
 	--gray-200: #141414;
 	--gray-300: #fafafa;
@@ -75,7 +76,8 @@
 	--black: #FFFFFF;
 
 	--background: #060b10;
-	--background-rgb: 6, 11, 16;
+	--overlay-card: 18, 24, 31;
+	--shadow-rgb: 172, 173, 175;
 
 	--light-color: #00f2ff;
 

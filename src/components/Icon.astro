@@ -3,10 +3,9 @@ import type { HTMLAttributes } from 'astro/types';
 import { frontendIcons, backendIcons } from './SkillsIcons';
 
 interface Props {
-	icon: keyof typeof frontendIcons | keyof typeof backendIcons;
+	icon: string;
 	color?: string;
 	size?: string;
-	type?: 'frontend' | 'backend'; 
 }
 
 interface IconData {
@@ -16,15 +15,20 @@ interface IconData {
 
 type IconSet = Record<string, IconData>;
 
-const { color, icon, size, type = 'frontend' } = Astro.props;
+const { color, icon, size } = Astro.props;
 
-const icons: IconSet = type === 'frontend' ? frontendIcons : backendIcons;
-const { viewBox, path } = icons[icon];
+const icons: IconSet = { ...frontendIcons, ...backendIcons };
+const iconData = icons[icon];
+
+if (!iconData) {
+  throw new Error(`Icono "${icon}" no encontrado en los conjuntos de íconos.`);
+}
+
+const { viewBox, path } = iconData;
 
 const attrs: HTMLAttributes<'svg'> = {};
 if (size) attrs.style = { '--size': size };
 if (color) attrs.fill = color;
-
 ---
 
 <svg
@@ -41,6 +45,6 @@ if (color) attrs.fill = color;
 		vertical-align: middle;
 		width: var(--size);
 		height: var(--size);
+		filter: drop-shadow(-1px 2px 2px rgba(var(--shadow-rgb) , 0.4));
 	}
-
 </style>

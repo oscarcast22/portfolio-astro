@@ -36,6 +36,7 @@
 	--gradient3: linear-gradient(285deg, var(--background) 35%, var(--primary) 40%, var(--primary) 100%);
 
 	--shadow-m: -1px 1px 5px var(--gray-200);
+	--shadow-l: -1px 2px 10px var(--gray-200);
 
 	/* Tamaño de fuentes*/
 	--text-xs: 0.75rem;
